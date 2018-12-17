@@ -7,12 +7,78 @@
         <link rel="stylesheet" href="css/custom.css">
     </head>
     <body>
-        Registrarse
+        
+        <div class="container-fluid bg-dark">
+            <div class="row justify-content-md-center">
+                <div id="registrarse" class="col-lg-6 col-offset-3">
+                   <table class="table">
+                       <tr>
+                           <td colspan="2" class="text-center">Crear Cuenta</td>
+                       </tr>
+                       <tr>
+                           <td>Nombre:</td>
+                           <td><input id="txt-nombre" class="form-control" type="text"> </td>
+                       </tr>
+                       <tr>
+                           <td>Apellido:</td>
+                           <td><input id="txt-apellido" class="form-control" type="text"></td>
+                       </tr>
+                       <tr>
+                           <td>Correo:</td>
+                           <td><input id="txt-correo" class="form-control" type="text"></td>
+                       </tr>
+                       <tr>
+                           <td>Contraseña:</td>
+                           <td><input id="txt-password" class="form-control" type="password"></td>
+                       </tr>
+                       <tr>
+                           <td>Usuario:</td>
+                           <td><input id="txt-usuario" class="form-control" type="text"></td>
+                       </tr>
+                       <tr>
+                           <td>Genero:</td>
+                           <td>
+                                <select id="slc-genero" class="form-control">
+                                    <option value="0">Seleccione su género</option>
+                                </select>
+                            </td>
+                       </tr>
+                       <tr>
+                           <td>Plan:</td>
+                           <td>
+                                <select id="slc-plan" class="form-control">
+                                    <option value="0">Seleccione su Plan</option>
+                                </select>
+                            </td>
+                       </tr>
+                       <tr>
+                           <td colspan="2">
+                                <div class="btn-group " role="group" aria-label="Basic example">
+                                    <a class="btn btn-danger" href="index.html">Cancelar</a>
+                                    <a class="btn btn-info" href="login.html">Iniciar Sesión</a>
+                                    <button id="btn-crear" type="button" class="btn btn-success">Crear Cuenta</button>
+                                </div>
+                           </td>
+                       </tr>
+                   </table>
+                </div>
+
+                <div class="col-lg-2" id="error">
+                    <h5 class="texto-error">Todos los campos deben estar llenos</h5>
+                </div>
+
+                <div class="col-lg-2" id="creado">
+                    <h5 class="texto-creado">Usuario creado con éxito</h5>
+                </div>
+
+            </div>
+        </div>
 
         <a href="index.html">Pagina Principal</a>
         <a href="login.html">Iniciar Sesión</a>
 
         <script src="js/jquery-3.3.1.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/controlador-registrarse.js"></script>
     </body>
 </html>
