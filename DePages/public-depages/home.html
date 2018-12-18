@@ -43,16 +43,31 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div id="proyectos" class="col-lg-3" >
-					<h2><label>Proyectos</label></h2>
+
+					<h2><label >Proyectos</label> <button id="modal-agregar" class="btn" data-toggle="modal" data-target="#agregar-proyecto"><img id="icono" src="iconos/svg/si-glyph-button-plus.svg"/></button></h2>
+
 					<div id="contenedor-proyectos" class="row">
-						<h3>Ningun Proyecto</h3>
+						
 					</div>
 				</div>
-				<div class="col-lg-6">
-					<h2>Carpetas</h2>
+				<div id="carpetas" class="col-lg-6">
+
+					<h2><label>Carpetas</label><button id="agregar-carpeta-ventana" class="btn" data-toggle="modal" data-target="#agregar-carpeta-modal"><img id="icono" src="iconos/svg/si-glyph-button-plus.svg"/></button></h2>
+					<input id="carpetas-de-proyecto" type="hidden">
+					
+					<div id="contenedor-carpetas" class="row">
+						
+					</div>
 				</div>
-				<div class="col-lg-3">
-					3
+				<div id="archivos" class="col-lg-3">
+
+					<h2><label>Archivos</label><button id="" class="btn" data-toggle="modal" data-target="#"><img id="icono" src="iconos/svg/si-glyph-button-plus.svg"/></button></h2>
+					<input id="archivos-de-carpeta" type="hidden">
+
+					<div id="contenedor-archivos" class="row">
+						
+					</div>
+
 				</div>
 			</div>
 		</div>
@@ -60,10 +75,151 @@
 		<footer class="bg-dark">
 			<span class="d-block p-2 text-white"><h3>DePages</h3></span>
 			<span class="d-block p-2 text-white"><h3>Derechos reservados</h3></span>
-		</footer>		
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modificar-proyecto">
+				Launch demo modal
+			</button>
+		</footer>
+		
+		<!-- Modal Modificar Proyecto -->
+		<div class="modal fade" id="modificar-proyecto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Gestión de Proyecto</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<h2>Nombre del proyecto:</h2> <input id="proyecto-nuevo-nombre" type="text" placeholder="Nuevo nombre" class="form-control">
+					<input id="gestionar" type="hidden">
+					<div class="col-lg-8" id="error">
+						<h3 id="texto-error">Proyecto Eliminado</h3>
+					</div>
+			
+					<div class="col-lg-8" id="creado">
+						<h3 id="texto-creado">Proyecto Modificado</h3>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+					<button id="btn-eliminar-proyecto" type="button" class="btn btn-danger">Eliminar</button>
+					<button id="btn-modificar-proyecto" type="button" class="btn btn-success">Modificar</button>
+				</div>
+				</div>
+			</div>
+		</div>
 
-		
-		
+		<!-- Modal Gestionar Carpetas -->
+		<div class="modal fade" id="gestionar-carpeta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Gestión de Carpeta</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<h2>Nombre de la Carpeta:</h2> <input id="nueva-carpeta" type="text" placeholder="Nombre" class="form-control">
+					<textarea id="txta-descripcion" cols="30" rows="10" class="form-control" placeholder="Descripcion"></textarea>
+					<input id="agregar-carpeta" type="hidden">			
+					<div class="col-lg-8" id="modificada-carpeta">
+						<h3 id="texto-creado">Carpeta Modificada</h3>
+					</div>
+					<div class="col-lg-8" id="eliminada-carpeta">
+						<h3 id="texto-creado">Carpeta Eliminada!</h3>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+					<button id="btn-eliminar-carpeta" type="button" class="btn btn-danger">Eliminar</button>
+					<button id="btn-modificar-carpeta" type="button" class="btn btn-success">Modificar</button>
+				</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal Agregar Proyecto -->
+		<div class="modal fade" id="agregar-proyecto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Agregar Proyecto</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<h2>Nombre del proyecto:</h2> <input id="nuevo_proyecto" type="text" placeholder="Nombre" class="form-control">
+					<input id="agregar" type="hidden">			
+					<div class="col-lg-8" id="creado-proyecto">
+						<h3 id="texto-creado">Proyecto Creado!</h3>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+					<button id="btn-agregar-proyecto" type="button" class="btn btn-success">Agregar</button>
+				</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal Agregar Carpeta -->
+		<div class="modal fade" id="agregar-carpeta-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Agregar Carpeta</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<h2>Nombre de la Carpeta: </h2> <input id="nuevo_carpeta" type="text" placeholder="Nombre" class="form-control">
+					<textarea id="txta-descripcion-agregar" cols="30" rows="10" class="form-control" placeholder="Descripcion"></textarea>
+					<input id="agregar-modal-carpeta" type="hidden">			
+					<div class="col-lg-8" id="creado-carpeta">
+						<h3 id="texto-creado">Carpeta Creada!</h3>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+					<button id="btn-agregar-carpeta" type="button" class="btn btn-success">Agregar</button>
+				</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal Gestionar Archivos -->
+		<div class="modal fade" id="gestionar-archivo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Gestión de Archivo</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<h2>Nombre del Archivo:</h2> <input id="nuevo-archivo" type="text" placeholder="Nombre" class="form-control">
+					<input id="agregar-archivo" type="hidden">			
+					<div class="col-lg-8" id="modificado-archivo">
+						<h3 id="texto-creado">Archivo Modificado</h3>
+					</div>
+					<div class="col-lg-8" id="eliminado-archivo">
+						<h3 id="texto-creado">Archivo Eliminado!</h3>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+					<button id="btn-eliminar-archivo" type="button" class="btn btn-danger">Eliminar</button>
+					<button id="btn-modificar-archivo" type="button" class="btn btn-success">Modificar</button>
+				</div>
+				</div>
+			</div>
+		</div>
+	
 
 		<script src="js/jquery-3.3.1.min.js"></script>
 		<script src="js/semantic.min.js"></script>

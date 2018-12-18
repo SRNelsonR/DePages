@@ -140,10 +140,12 @@ app.get("/cerrar-session",function(req,res){
 });
 
 /*----------------------Peticiones para Home.html-----------------------------------------------------*/
+
+//Relacionado a proyectos
 app.get("/cargar-proyectos",function(req,res){
     var conexion = mysql.createConnection(credenciales);
     conexion.query(
-        "SELECT codigo_proyecto, id_usuario, codigo_estado, nombre_proyecto, html, css, js, created, updated_at FROM tbl_proyectos where id_usuario = ? and codigo_estado = 1",
+        "SELECT codigo_proyecto, id_usuario, codigo_estado, nombre_proyecto, created, updated_at FROM tbl_proyectos where id_usuario = ? and codigo_estado = 1",
         [
             req.query.codigo_usuario
         ],
@@ -151,6 +153,152 @@ app.get("/cargar-proyectos",function(req,res){
             res.send(data);
             res.end();
         }    
+    );
+    conexion.end();
+});
+
+app.post("/modificar-proyecto", function(req, res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        "UPDATE tbl_proyectos SET nombre_proyecto = ?, updated_at = ? WHERE codigo_proyecto = ?",
+        [
+            req.body.nombre,
+            req.body.fecha,
+            req.body.codigo_proyecto
+        ],
+        function(error, data, fields){
+            res.send(data);
+        }
+    );
+    conexion.end();
+});
+
+app.post("/desactivar-proyecto", function(req, res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        "UPDATE tbl_proyectos SET codigo_estado = 2, updated_at = ? WHERE codigo_proyecto = ?",
+        [
+            req.body.fecha,
+            req.body.codigo_proyecto
+        ],
+        function(error, data, fields){
+            res.send(data);
+        }
+    );
+    conexion.end();
+});
+
+app.post("/agregar-proyecto", function(req, res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        "INSERT INTO tbl_proyectos (id_usuario, codigo_estado, nombre_proyecto, created, updated_at) VALUES (?, 1, ?, ?, ?)",
+        [
+            req.body.usuario,
+            req.body.nombre_proyecto,
+            req.body.fecha_creacion,
+            req.body.fecha_actualizacion
+        ],
+        function(error, data, fields){
+            res.send(data);
+        }
+    );
+    conexion.end();
+});
+
+//Relacionado a carpetas
+app.get("/cargar-carpetas",function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        "SELECT codigo_carpeta, id_usuario, codigo_estado, codigo_proyecto, nombre, descripcion FROM tbl_carpetas where codigo_proyecto=? and codigo_estado = 1",
+        [
+            req.query.codigo_proyecto
+        ],
+        function(error, data, fields){
+            res.send(data);
+            res.end();
+        }    
+    );
+    conexion.end();
+});
+
+app.post("/modificar-carpeta", function(req, res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        "UPDATE tbl_carpetas SET nombre = ?, descripcion = ?, actualizado = ? WHERE codigo_carpeta = ?",
+        [
+            req.body.nombre,
+            req.body.descripcion,
+            req.body.actualizacion,
+            req.body.codigo_carpeta
+        ],
+        function(error, data, fields){
+            res.send(data);
+        }
+    );
+    conexion.end();
+});
+
+app.post("/desactivar-carpeta", function(req, res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        "UPDATE tbl_carpetas SET codigo_estado = 2, actualizado = ? WHERE codigo_carpeta = ?",
+        [
+            req.body.actualizacion,
+            req.body.codigo_carpeta
+        ],
+        function(error, data, fields){
+            res.send(data);
+        }
+    );
+    conexion.end();
+});
+
+app.post("/agregar-carpeta", function(req, res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        "INSERT INTO tbl_carpetas (id_usuario, codigo_estado, codigo_proyecto, nombre, descripcion, creado, actualizado) VALUES (?, 1, ?, ?, ?, ?, ?);",
+        [
+            req.body.usuario,
+            req.body.codigo_proyecto,
+            req.body.nombre,
+            req.body.descripcion,
+            req.body.fecha_creacion,
+            req.body.fecha_actualizacion
+        ],
+        function(error, data, fields){
+            res.send(data);
+        }
+    );
+    conexion.end();
+});
+
+/* Gestión de Archivos */
+app.get("/cargar-archivos",function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        "SELECT codigo_tipo_archivo, codigo_carpeta, codigo_estado, nombre_tipo_archivo, contenido FROM tbl_tipo_archivo where codigo_carpeta = ? and codigo_estado = 1",
+        [
+            req.query.codigo_carpeta
+        ],
+        function(error, data, fields){
+            res.send(data);
+            res.end();
+        }    
+    );
+    conexion.end();
+});
+
+app.post("/modificar-archivo", function(req, res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        "UPDATE tbl_tipo_archivo SET nombre_tipo_archivo = ? WHERE codigo_tipo_archivo = ?",
+        [
+            req.body.nombre,
+            req.body.codigo_tipo_archivo
+        ],
+        function(error, data, fields){
+            res.send(data);
+        }
     );
     conexion.end();
 });
