@@ -1,0 +1,35 @@
+#nav-principal {
+    background-color: #000000!important;
+}
+
+#proyectos{
+    background-color: white;
+    border-radius: 3px;
+    
+}
+
+label{
+    height: 45px;
+    background-color: rgba(192, 193, 194, 0.719);
+    width: 146px;
+    padding-left: 20px;
+    margin-top: 15px;
+}
+
+#identificador-usuario{
+    color: white;
+    background-color: blue;
+}
+
+input[type="button"] {
+    margin-right: 10px;
+}
+
+#icono{
+    height: 20px;
+    margin-right: 10px;
+}
+
+#proyecto-info{
+    margin-bottom: 10px;
+}

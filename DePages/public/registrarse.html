@@ -6,9 +6,9 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/custom.css">
     </head>
-    <body>
+    <body class="bg-dark">
         
-        <div class="container-fluid bg-dark">
+        <div class="container-fluid">
             <div class="row justify-content-md-center">
                 <div id="registrarse" class="col-lg-6 col-offset-3">
                    <table class="table">
@@ -17,23 +17,23 @@
                        </tr>
                        <tr>
                            <td>Nombre:</td>
-                           <td><input id="txt-nombre" class="form-control" type="text"> </td>
+                           <td><input id="txt-nombre" class="form-control" type="text" placeholder="Ingrese su nombre"> </td>
                        </tr>
                        <tr>
                            <td>Apellido:</td>
-                           <td><input id="txt-apellido" class="form-control" type="text"></td>
+                           <td><input id="txt-apellido" class="form-control" type="text" placeholder="Ingrese su apellido"></td>
                        </tr>
                        <tr>
                            <td>Correo:</td>
-                           <td><input id="txt-correo" class="form-control" type="text"></td>
+                           <td><input id="txt-correo" class="form-control" type="text" placeholder="Ingrese su correo"></td>
                        </tr>
                        <tr>
                            <td>Contraseña:</td>
-                           <td><input id="txt-password" class="form-control" type="password"></td>
+                           <td><input id="txt-password" class="form-control" type="password" placeholder="Ingrese su contraseña"></td>
                        </tr>
                        <tr>
                            <td>Usuario:</td>
-                           <td><input id="txt-usuario" class="form-control" type="text"></td>
+                           <td><input id="txt-usuario" class="form-control" type="text" placeholder="Ingrese su Nickname"></td>
                        </tr>
                        <tr>
                            <td>Genero:</td>
@@ -54,7 +54,7 @@
                        <tr>
                            <td colspan="2">
                                 <div class="btn-group " role="group" aria-label="Basic example">
-                                    <a class="btn btn-danger" href="index.html">Cancelar</a>
+                                    <a class="btn btn-danger" href="index.html">Pagina Principal</a>
                                     <a class="btn btn-info" href="login.html">Iniciar Sesión</a>
                                     <button id="btn-crear" type="button" class="btn btn-success">Crear Cuenta</button>
                                 </div>
@@ -73,9 +73,6 @@
 
             </div>
         </div>
-
-        <a href="index.html">Pagina Principal</a>
-        <a href="login.html">Iniciar Sesión</a>
 
         <script src="js/jquery-3.3.1.min.js"></script>
         <script src="js/bootstrap.min.js"></script>

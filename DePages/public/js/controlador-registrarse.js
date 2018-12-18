@@ -37,7 +37,9 @@ $(document).ready(function(){
 
 //Función para crear nuevo usuario verificando que los campos esten llenos
 $("#btn-crear").click(function(){
-    var datos = "nombre=" + $("#txt-nombre").val() + "&apellido=" + $("#txt-apellido").val() + "&correo=" +$("#txt-correo").val() + "&contrasena=" + $("#txt-password").val() + "&nickname=" + $("#txt-usuario").val() + "&genero=" + $("#slc-genero").val() + "&plan=" + $("#slc-plan").val();
+    var date = new Date();
+    var fecha = date.getFullYear() + "-"   + (date.getMonth()+1) + "-" + date.getDate() ;
+    var datos = "nombre=" + $("#txt-nombre").val() + "&apellido=" + $("#txt-apellido").val() + "&correo=" +$("#txt-correo").val() + "&contrasena=" + $("#txt-password").val() + "&nickname=" + $("#txt-usuario").val() + "&genero=" + $("#slc-genero").val() + "&plan=" + $("#slc-plan").val() + "&fecha=" + fecha;
     if( 
         $("#txt-nombre").val() == "" ||
         $("#txt-apellido").val() == "" ||
