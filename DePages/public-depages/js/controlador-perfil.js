@@ -68,7 +68,6 @@ function cargarSelectPlan(){
 
 $("#btn-modificar-datos").click(function(){
     var datos = `nombre=${$("#nombre-modal").val()}&apellido=${$("#apellido-modal").val()}&correo=${$("#correo-modal").val()}&nickname=${$("#nickname-modal").val()}&codigo_plan=${$("#slc-plan").val()}&contrasena=${$("#contrasena-modal").val()}&codigo_usuario=${$("#codigo-usuario").val()}`;
-    alert(datos);
     $.ajax({
         url:"/actualizar-usuario",
         method:"POST",
