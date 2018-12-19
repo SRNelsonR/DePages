@@ -236,8 +236,6 @@ function cargarArchivos(codigo_carpeta){
                     `<div id="carpeta-info" class="col-lg-12">
                         <button class="btn btn-light"><img id="icono" src="iconos/svg/si-glyph-bug.svg"/>${element.nombre_tipo_archivo}</button>
         
-                        <button class="btn btn-success" data-toggle="modal" data-target="#gestionar-archivo" onclick="gestionarArchivos(${element.codigo_tipo_archivo});"><img id="icono" src="iconos/svg/si-glyph-edit.svg"/></button>
-        
                         <input id="identificador-archivo-${element.codigo_tipo_archivo}" type="hidden" value="${element.codigo_tipo_archivo}">
                     </div>`
                 );

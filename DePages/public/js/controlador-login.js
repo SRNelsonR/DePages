@@ -18,7 +18,7 @@ $("#btn-ingresar").click(function(){
             success:function(res){
                 console.log(res);
                 if (res.length == 1)
-                    window.location.href = "/edicion.html";
+                    window.location.href = "/perfil.html";
                 else 
                     alert("Credenciales invalidas");
             },

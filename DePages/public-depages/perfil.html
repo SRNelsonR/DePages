@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Page Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/semantic.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/custom-edicion.css">
+        <link rel="stylesheet" href="css/custom-perfil.css">
+    </head>
+    <body class="bg-dark">
+        
+        <!-- Barra de navegación -->
+		<nav id="nav-principal" class="navbar navbar-dark bg-primary navbar-expand-lg">
+            <a class="navbar-brand" href="#">DePages</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    
+                </li>
+                <li class="nav-item">
+                    
+                </li>
+                <li class="nav-item dropdown">
+                    
+                </li>
+                <li class="nav-item">
+                    
+                </li>
+                </ul>
+                <div class="form-inline my-2 my-lg-0">
+                    <input id="codigo-usuario" type="hidden">
+                    <button class="btn btn-secondary" id="btn-modificar-informacion" data-toggle="modal" data-target="#modificar-informacion" >Modificar Información</button>
+                    <a class="btn btn-dark redireccion-editar" href="edicion.html">Editar</a>
+                    <a class="btn btn-dark redireccion-editar" href="home.html">Proyectos</a>
+                    <input id="usuario-nickname" class="btn btn-dark" type="button" value="">
+                    <button class="btn btn-danger" id="cerrar-sesion">Salir</button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="row justify-content-md-center">
+                <div id="informacion" class="col-lg-6 justify-content-md-center">
+                    
+                    <div id="info-titulo">
+                        <h3>Infomración del Usuario</h3>
+                    </div>
+                    
+                    <div id="info-contenido">
+                        <label><h3>Nombre: </h3></label> <label><div id="nombre-usuario"></div></label> <br>
+                        <label> <h3>Apellido: </h3></label> <label><div id="apellido-usuario"></div></label> <br>
+                        <label> <h3>Correo: </h3></label> <label><div id="correo"></div></label> <br>
+                        <label> <h3>Nickname: </h3></label> <label><div id="nickname"></div></label> <br>
+                        <label> <h3>Fecha de Creación: </h3></label> <label><div id="fecha-creacion"></div></label> <br>
+                        <label> <h3>Genero: </h3></label> <label><div id="genero"></div></label> <br>
+                        <label> <h3>Plan: </h3></label> <label><div id="plan"></div></label> <br>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Gestionar Carpetas -->
+		<div class="modal fade" id="modificar-informacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modificar Información del Usuario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h2>Nombre: </h2> <input id="nombre-modal" type="text" placeholder="Nombre" class="form-control">
+                    <h2>Apellido: </h2> <input id="apellido-modal" type="text" placeholder="Apellido" class="form-control">
+                    <h2>Correo: </h2> <input id="correo-modal" type="text" placeholder="Correo" class="form-control">
+                    <h2>Contraseña: </h2> <input id="contrasena-modal" type="password" placeholder="Contraseña" class="form-control">
+                    <h2>Nickname: </h2> <input id="nickname-modal" type="text" placeholder="Nickname" class="form-control">
+                    <h2>Plan: </h2> 
+                    <select class="form-control" id="slc-plan">
+                        <option value="0">Seleccione Nuevo Plan</option>
+                    </select>
+                    
+                    <div class="col-lg-8" id="modificada-carpeta">
+                        <h3 id="texto-creado">Carpeta Modificada</h3>
+                    </div>
+                    <div class="col-lg-8" id="eliminada-carpeta">
+                        <h3 id="texto-creado">Carpeta Eliminada!</h3>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                    <button id="btn-modificar-datos" type="button" class="btn btn-success">Modificar</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="js/semantic.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/controlador-perfil.js"></script>
+    </body>
+</html>

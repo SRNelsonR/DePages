@@ -6,7 +6,7 @@ $(document).ready(function(){
         success:function(res){
             $("#usuario-nickname").val(res.nickname);
             $("#codigo-usuario").val(res.codigoUsuario);
-            cargarSelectCarpetas(res.codigoUsuario)
+            cargarSelectCarpetas(res.codigoUsuario);
         },
         error:function(error){
             console.error(error);
@@ -36,6 +36,14 @@ function cargarSelectCarpetas(codigo_usuario){
 
 $("#slc-carpeta").change(function(){
     cargarEditores();
+    if($("#slc-carpeta").val() == 0){
+        $("#btn-ejecutar-edicion").fadeOut();
+        $("#btn-crear-edicion").fadeOut();
+    }
+    else{
+        $("#btn-ejecutar-edicion").fadeIn();
+        $("#btn-crear-edicion").fadeIn();
+    }
 });
 
 function cargarEditores(){
@@ -53,7 +61,14 @@ function cargarEditores(){
                 $("#txta-css").val("");
                 $("#txta-js").val("");
                 $("#btn-guardar-edicion").fadeOut();
-                $("#btn-crear-edicion").fadeIn();
+
+                if($("#slc-carpeta").val() == 0){
+                    $("#btn-crear-edicion").fadeOut();
+                }
+                else{
+                    $("#btn-crear-edicion").fadeIn();
+                }
+
             } else{
                 res.forEach(function(element) {
                     if(element.nombre_tipo_archivo == "html")
@@ -181,6 +196,27 @@ function peticionCrearJS(){
         }
     });
 }
+
+$("#btn-ejecutar-edicion").click(function(){
+    var datos = "codigo_carpeta=" + $("#slc-carpeta").val();
+    //$("#resultado-ejecucion").val(" ");
+    $.ajax({
+        url:"/cargar-editores",
+        method:"GET",
+        data:datos,
+        dataType:"json",
+        success:function(res){
+            res.forEach(function(element){
+                $("#resultado-ejecucion").append(
+                    `${element.contenido}`
+                );
+            });
+        },
+        error:function(error){
+            console.error(error);
+        }
+    });
+});
 
 /* Cerrar Sesión */
 $("#cerrar-sesion").click(function(){

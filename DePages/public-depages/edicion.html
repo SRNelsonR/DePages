@@ -14,46 +14,47 @@
 
         <!-- Barra de navegación -->
 		<nav id="nav-principal" class="navbar navbar-dark bg-primary navbar-expand-lg">
-            <a class="navbar-brand" href="#">DePages</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <select class="form-control" id="slc-carpeta">
-                        <option value="0">Seleccione una carpeta</option>
-                    </select>
-                </li>
-                <li class="nav-item">
-                    
-                </li>
-                <li class="nav-item dropdown">
-                    
-                </li>
-                <li class="nav-item">
-                    
-                </li>
-                </ul>
-                <div class="form-inline my-2 my-lg-0">
-                    <input id="codigo-usuario" type="hidden">
-                    <input id="codigo-carpeta" type="hidden">
-                    <button id="btn-ejecutar-edicion" class="btn btn-secondary">Ejecutar
-                            <img id="icono" src="iconos/svg/si-glyph-triangle-double-arrow-right.svg"/>
-                    </button>
-                    <button id="btn-guardar-edicion" class="btn btn-secondary">Guardar
-                            <img id="icono" src="iconos/svg/si-glyph-inbox-download.svg"/>
-                    </button>
-                    <button id="btn-crear-edicion" class="btn btn-secondary">Crear
-                            <img id="icono" src="iconos/svg/si-glyph-document-bullet-list.svg"/>
-                    </button>
-                    <a class="btn btn-dark redireccion-editar" href="home.html">Principal</a>
-                    <input id="usuario-nickname" class="btn btn-dark" type="button" value="">
-                    <button class="btn btn-danger" id="cerrar-sesion">Salir</button>
+                <a class="navbar-brand" href="#">DePages</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <select class="form-control" id="slc-carpeta">
+                            <option value="0">Seleccione una carpeta</option>
+                        </select>
+                    </li>
+                    <li class="nav-item">
+                        
+                    </li>
+                    <li class="nav-item dropdown">
+                        
+                    </li>
+                    <li class="nav-item">
+                        
+                    </li>
+                    </ul>
+                    <div class="form-inline my-2 my-lg-0">
+                        <input id="codigo-usuario" type="hidden">
+                        <input id="codigo-carpeta" type="hidden">
+                        <button id="btn-ejecutar-edicion" class="btn btn-secondary">Ejecutar
+                                <img id="icono" src="iconos/svg/si-glyph-triangle-double-arrow-right.svg"/>
+                        </button>
+                        <button id="btn-guardar-edicion" class="btn btn-secondary">Guardar
+                                <img id="icono" src="iconos/svg/si-glyph-inbox-download.svg"/>
+                        </button>
+                        <button id="btn-crear-edicion" class="btn btn-secondary">Crear
+                                <img id="icono" src="iconos/svg/si-glyph-document-bullet-list.svg"/>
+                        </button>
+                        <a class="btn btn-dark redireccion-editar" href="perfil.html">Perfil</a>
+                        <a class="btn btn-dark redireccion-editar" href="home.html">Proyectos</a>
+                        <input id="usuario-nickname" class="btn btn-dark" type="button" value="">
+                        <button class="btn btn-danger" id="cerrar-sesion">Salir</button>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
 
         <div class="container-fluid">
 
@@ -99,7 +100,7 @@
 
             <div class="row">
                 <div id="resultado" class="col-lg-12">
-                    <textarea id="" cols="185" rows="17"></textarea>
+                    <textarea id="resultado-ejecucion" cols="185" rows="17"></textarea>
                 </div>
             </div>
 

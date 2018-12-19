@@ -65,7 +65,7 @@ app.get("/cargar-plan", function(req, res){
 app.post("/crear-usuario", function(req, res){
     var conexion = mysql.createConnection(credenciales);
     conexion.query(
-        "INSERT INTO tbl_usuarios (codigo_genero, codigo_plan, nombre, apellido, correo, nickname, contrasena, fecha_creacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+        "INSERT INTO tbl_usuarios (codigo_genero, codigo_plan, nombre, apellido, correo, nickname, contrasena, fecha_creacion) VALUES (?, ?, ?, ?, ?, ?, sha1(?), ?)",
         [
             req.body.genero,
             req.body.plan,
@@ -94,7 +94,7 @@ app.post("/crear-usuario", function(req, res){
 app.post("/login", function(req, res){
     var conexion = mysql.createConnection(credenciales);
     conexion.query(
-        "select id_usuario, codigo_genero, codigo_plan, nombre, apellido, correo, nickname, contrasena, fecha_creacion from tbl_usuarios where correo = ? and contrasena = ?",
+        "select id_usuario, codigo_genero, codigo_plan, nombre, apellido, correo, nickname, contrasena, fecha_creacion from tbl_usuarios where correo = ? and contrasena = sha1(?)",
         [
             req.body.correo,
             req.body.contrasena
@@ -376,6 +376,71 @@ app.post("/crear-archivos", function(req, res){
         function(error, data, fields){
             res.send(data);
         }
+    );
+    conexion.end();
+});
+
+/*----------------------Peticiones para perfil.html-----------------------------------------------------*/
+app.get("/informacion-usuario",function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        "select a.id_usuario, a.nombre, a.apellido, a.correo, a.nickname, a.contrasena, a.fecha_creacion, b.nombre_genero, c.nombre_plan from tbl_usuarios a inner join tbl_generos b on(a.codigo_genero = b.codigo_genero) inner join tbl_planes c on(a.codigo_plan = c.codigo_plan) where a.id_usuario = ?",
+        [
+            req.query.usaurio
+        ],
+        function(error, data, fields){
+            res.send(data);
+            res.end();
+        }    
+    );
+    conexion.end();
+});
+
+app.post("/actualizar-usuario", function(req, res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        "UPDATE tbl_usuarios SET codigo_plan = ?, nombre = ?, apellido = ?, correo = ?, nickname = ?, contrasena = sha1(?) WHERE id_usuario = ?",
+        [
+            req.body.codigo_plan,
+            req.body.nombre,
+            req.body.apellido,
+            req.body.correo,
+            req.body.nickname,
+            req.body.contrasena,
+            req.body.codigo_usuario
+        ],
+        function(error, data, fields){
+            res.send(data);
+        }
+    );
+    conexion.end();
+});
+
+app.post("/actualizar-variables-session", function(req, res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        "select id_usuario, codigo_genero, codigo_plan, nombre, apellido, correo, nickname, contrasena, fecha_creacion from tbl_usuarios where correo = ? and contrasena = sha1(?)",
+        [
+            req.body.correo,
+            req.body.contrasena
+        ],
+        function(error, data, fields){
+            if (error){
+                res.send(error);
+                res.end();
+            }else{
+                if (data.length==1){
+                    req.session.codigoUsuario = data[0].id_usuario;
+                    req.session.correoUsuario = data[0].correo;
+                    req.session.codigoPlan = data[0].codigo_plan;
+                    req.session.nombre = data[0].nombre;
+                    req.session.apellido = data[0].apellido;
+                    req.session.nickname = data[0].nickname;
+                }
+                res.send(data);
+                res.end();
+            }
+        }    
     );
     conexion.end();
 });

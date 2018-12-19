@@ -15,6 +15,6 @@ textarea{
     margin-right: 10px;
 }
 
-#btn-guardar-edicion, #btn-crear-edicion{
+#btn-guardar-edicion, #btn-crear-edicion, #btn-ejecutar-edicion, #btn-crear-edicion{
     display: none;
 }
