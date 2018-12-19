@@ -60,12 +60,13 @@ input[type="button"] {
 #carpetas{
     background-color: rgba(175, 169, 169, 0.692);
     border-radius: 3px;
-    
+    display: none;
 }
 
 #archivos{
     background-color: white;
     border-radius: 3px;
+    display:none;
 }
 
 #modificada-carpeta, #eliminada-carpeta, #creado-carpeta{
@@ -94,4 +95,8 @@ input[type="button"] {
     position: absolute;
     margin-left: 485px;
     display: none;
+}
+
+.redireccion-editar{
+    margin-right: 12px;
 }

@@ -114,7 +114,7 @@ $("#btn-agregar-proyecto").click(function(){
 
 /* Gestión de Carpetas */
 function cargarCarpetas(codigo_proyecto){
-    //$("#carpetas").fadeIn();
+    $("#carpetas").fadeIn();
     $("#carpetas-de-proyecto").val(codigo_proyecto);
     $("#contenedor-carpetas").html("");
     var datos = "codigo_proyecto=" + codigo_proyecto;
@@ -220,6 +220,7 @@ $("#btn-agregar-carpeta").click(function(){
 
 /* Gestion de Archivos */
 function cargarArchivos(codigo_carpeta){
+    $("#archivos").fadeIn();
     $("#archivos-de-carpeta").val(codigo_carpeta);
     $("#contenedor-archivos").html("");
     var datos = "codigo_carpeta=" + codigo_carpeta;
@@ -233,7 +234,7 @@ function cargarArchivos(codigo_carpeta){
             res.forEach(function(element){
                 $("#contenedor-archivos").append(
                     `<div id="carpeta-info" class="col-lg-12">
-                        <button class="btn btn-light"><img id="icono" src="iconos/svg/si-glyph-folder-remove.svg"/>${element.nombre_tipo_archivo}</button>
+                        <button class="btn btn-light"><img id="icono" src="iconos/svg/si-glyph-bug.svg"/>${element.nombre_tipo_archivo}</button>
         
                         <button class="btn btn-success" data-toggle="modal" data-target="#gestionar-archivo" onclick="gestionarArchivos(${element.codigo_tipo_archivo});"><img id="icono" src="iconos/svg/si-glyph-edit.svg"/></button>
         
@@ -261,6 +262,25 @@ $("#btn-modificar-archivo").click(function(){
         dataType:"json",
         success:function(res){
             $("#modificado-archivo").fadeIn().delay(3000).fadeOut();
+            $("#nuevo-archivo").val("");
+            cargarArchivos($("#archivos-de-carpeta").val());
+        },
+        error:function(error){
+            console.error(error);
+        }
+    });
+});
+
+$("#btn-eliminar-archivo").click(function(){
+    var datos = "codigo_tipo_archivo=" + $("#agregar-archivo").val();
+    $.ajax({
+        url:"/desactivar-archivo",
+        method:"POST",
+        data:datos,
+        dataType:"json",
+        success:function(res){
+            console.log(res);
+            $("#eliminado-archivo").fadeIn().delay(3000).fadeOut();
             $("#nuevo-archivo").val("");
             cargarArchivos($("#archivos-de-carpeta").val());
         },

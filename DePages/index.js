@@ -303,6 +303,83 @@ app.post("/modificar-archivo", function(req, res){
     conexion.end();
 });
 
+app.post("/desactivar-archivo", function(req, res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        "UPDATE tbl_tipo_archivo SET codigo_estado = 2 WHERE codigo_tipo_archivo = ?",
+        [
+            req.body.codigo_tipo_archivo
+        ],
+        function(error, data, fields){
+            res.send(data);
+        }
+    );
+    conexion.end();
+});
+
+/*----------------------Peticiones para edicion.html-----------------------------------------------------*/
+app.get("/cargar-select-carpetas",function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        "select codigo_carpeta, id_usuario, codigo_estado, nombre, descripcion, creado, actualizado from tbl_carpetas where codigo_estado = 1 and id_usuario = ?",
+        [
+            req.query.usuario
+        ],
+        function(error, data, fields){
+            res.send(data);
+            res.end();
+        }    
+    );
+    conexion.end();
+});
+
+app.get("/cargar-editores",function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        "select codigo_tipo_archivo, codigo_carpeta, codigo_estado, nombre_tipo_archivo, contenido from tbl_tipo_archivo where codigo_carpeta = ?",
+        [
+            req.query.codigo_carpeta
+        ],
+        function(error, data, fields){
+            res.send(data);
+            res.end();
+        }    
+    );
+    conexion.end();
+});
+
+app.post("/guardar-archivos", function(req, res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        "UPDATE tbl_tipo_archivo SET contenido = ? WHERE codigo_carpeta = ? and nombre_tipo_archivo = ?",
+        [
+            req.body.contenido,
+            req.body.codigo_carpeta,
+            req.body.nombre_tipo_archivo
+        ],
+        function(error, data, fields){
+            res.send(data);
+        }
+    );
+    conexion.end();
+});
+
+app.post("/crear-archivos", function(req, res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        "INSERT INTO tbl_tipo_archivo (codigo_carpeta, codigo_estado, nombre_tipo_archivo, contenido) VALUES (?, 1, ?, ?)",
+        [
+            req.body.codigo_carpeta,
+            req.body.nombre_tipo_archivo,
+            req.body.contenido
+        ],
+        function(error, data, fields){
+            res.send(data);
+        }
+    );
+    conexion.end();
+});
+
 app.listen(8001, function(){
     console.log("Servidor levantado con éxito.");
 });
